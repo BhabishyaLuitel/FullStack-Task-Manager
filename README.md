@@ -62,7 +62,7 @@ graph TD
     Backend -->|deployed & monitored by| Deployment_Monitoring
     External_Services -->|enhance| Frontend & Backend
 ```
-## Architecture Overview
+## Architecture Components Explanation
 This document provides an overview of the architecture of our web application, outlining its key components and their interactions.
 
 ### Frontend
