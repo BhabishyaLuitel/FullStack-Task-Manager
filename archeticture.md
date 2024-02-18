@@ -1,44 +1,47 @@
 ```mermaid
 graph LR
-    style Frontend fill:#f9f,stroke:#333,stroke-width:2px
-    style Backend fill:#bbf,stroke:#333,stroke-width:2px
-    style Database fill:#fbf,stroke:#333,stroke-width:2px
-    style Collaboration_Version_Control fill:#bfb,stroke:#333,stroke-width:2px
-    style Deployment_Monitoring fill:#fdf,stroke:#333,stroke-width:2px
-    style External_Services fill:#ff9,stroke:#333,stroke-width:2px
+    %% Styles
+    classDef default fill:#f0f0f0,stroke:#333,stroke-width:2px;
+    classDef frontend fill:#ffccff,stroke:#333,stroke-width:4px;
+    classDef backend fill:#ccccff,stroke:#333,stroke-width:4px;
+    classDef database fill:#ffffcc,stroke:#333,stroke-width:4px;
+    classDef collab fill:#ccffcc,stroke:#333,stroke-width:4px;
+    classDef deployment fill:#ffcccc,stroke:#333,stroke-width:4px;
+    classDef external fill:#cccccc,stroke:#333,stroke-width:4px;
 
-    subgraph Frontend
-    React[("/ React Application \\")]
-    WebSocket[("> Real-Time Communication <br> (WebSocket)")]
-    Tailwind[("\\ Tailwind CSS /")]
+    %% Nodes
+    subgraph FE ["<b>Frontend</b>"]
+        React[("/ React Application \\")]:::frontend
+        WebSocket[("> Real-Time Communication <br> (WebSocket)")]:::frontend
+        Tailwind[("\\ Tailwind CSS /")]:::frontend
     end
 
-    subgraph Backend
-    NodeJS[("/ Node.js Server \\")]
-    RESTful[("> RESTful API")]
-    Auth[("\\ Authentication & Authorization /")]
+    subgraph BE ["<b>Backend</b>"]
+        NodeJS[("/ Node.js Server \\")]:::backend
+        RESTful[("> RESTful API")]:::backend
+        Auth[("\\ Authentication & Authorization /")]:::backend
     end
 
-    subgraph Database
-    Prisma[("> Prisma ORM")]
-    DB[("\\ Relational Database <br> (PostgreSQL/MySQL) /")]
+    subgraph DB ["<b>Database</b>"]
+        Prisma[("> Prisma ORM")]:::database
+        Database[("\\ Relational Database <br> (PostgreSQL/MySQL) /")]:::database
     end
 
-    subgraph Collaboration_Version_Control
-    Git[("/ Git Integration \\")]
-    FileSharing[("> File Sharing <br> (Google Drive, Dropbox)")]
+    subgraph CV ["<b>Collab & Version Control</b>"]
+        Git[("/ Git Integration \\")]:::collab
+        FileSharing[("> File Sharing <br> (Google Drive, Dropbox)")]:::collab
     end
 
-    subgraph Deployment_Monitoring
-    Docker[("\\ Docker Containerization /")]
-    Kubernetes[("> Kubernetes Orchestration")]
-    CICD[("/ CI/CD Pipeline \\")]
-    Monitoring[("> Monitoring <br> (Prometheus, Grafana, Sentry)")]
+    subgraph DM ["<b>Deployment & Monitoring</b>"]
+        Docker[("\\ Docker Containerization /")]:::deployment
+        Kubernetes[("> Kubernetes Orchestration")]:::deployment
+        CICD[("/ CI/CD Pipeline \\")]:::deployment
+        Monitoring[("> Monitoring <br> (Prometheus, Grafana, Sentry)")]:::deployment
     end
 
-    subgraph External_Services
-    CloudStorage[("\\ Cloud Storage Integration /")]
-    Notification[("> Notification Services")]
+    subgraph ES ["<b>External Services</b>"]
+        CloudStorage[("\\ Cloud Storage Integration /")]:::external
+        Notification[("> Notification Services")]:::external
     end
 
     %% Connections
@@ -46,17 +49,20 @@ graph LR
     React -->|styled by| Tailwind
     NodeJS -->|provides| RESTful
     NodeJS -->|secures via| Auth
-    Prisma -->|manages| DB
+    Prisma -->|manages| Database
     Git -->|tracks changes via| FileSharing
     Docker -->|orchestrated by| Kubernetes
     Kubernetes -->|deploys via| CICD
     CICD -->|monitored by| Monitoring
     CloudStorage -->|enables| FileSharing
     Notification -->|alerts| Auth
-    Frontend -->|calls| Backend
-    Backend -->|queries| Database
-    Backend -->|integrates with| Collaboration_Version_Control
-    Backend -->|monitored & deployed by| Deployment_Monitoring
-    External_Services -->|support| Frontend
-    External_Services -->|integrate with| Backend
+    FE -->|calls| BE
+    BE -->|queries| DB
+    BE -->|integrates with| CV
+    BE -->|monitored & deployed by| DM
+    ES -->|support| FE
+    ES -->|integrate with| BE
+
+    %% Applying Styles
+    class FE,BE,DB,CV,DM,ES default;
 ```
