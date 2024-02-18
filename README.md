@@ -8,9 +8,60 @@ The FullStack-Task-Manager project aims to evolve into an industry-ready web app
 
 Below is the architecture diagram of the FullStack-Task-Manager, detailing the interactions between its components:
 
-![Architecture Diagram](path/to/your/diagram.png)
+```mermaid
+graph TD
+    subgraph Frontend
+    React[("React Application")]
+    WebSocket[("Real-Time Communication<br>(WebSocket)")]
+    Tailwind[("Tailwind CSS for styling")]
+    React -->|uses| WebSocket
+    React -->|styled with| Tailwind
+    end
 
-(Note: Replace `path/to/your/diagram.png` with the actual path to your diagram image.)
+    subgraph Backend
+    NodeJS[("Node.js Server")]
+    RESTful[("RESTful API")]
+    Auth[("Authentication & Authorization<br>System")]
+    NodeJS -->|provides| RESTful
+    NodeJS -->|manages| Auth
+    end
+
+    subgraph Database
+    Prisma[("Managed by Prisma ORM")]
+    DB[("Relational Database<br>(PostgreSQL/MySQL)")]
+    Prisma -->|accesses| DB
+    end
+
+    subgraph Collaboration_Version_Control
+    Git[("Integration with Git")]
+    FileSharing[("File Sharing<br>(Google Drive, Dropbox)")]
+    Git -->|links code to tasks| FileSharing
+    end
+
+    subgraph Deployment_Monitoring
+    Docker[("Docker for Containerization")]
+    Kubernetes[("Kubernetes for Orchestration")]
+    CICD[("CI/CD Pipeline<br>(GitHub Actions, GitLab CI)")]
+    Monitoring[("Monitoring Tools<br>(Prometheus, Grafana, Sentry)")]
+    Docker -->|managed by| Kubernetes
+    Kubernetes -->|automates| CICD
+    CICD -->|enables| Monitoring
+    end
+
+    subgraph External_Services
+    CloudStorage[("Cloud Storage Integration")]
+    Notification[("Notification Services")]
+    CloudStorage -->|supports| FileSharing
+    Notification -->|notifies| Auth
+    end
+
+    %% Connections
+    Frontend -->|interacts with| Backend
+    Backend -->|stores data in| Database
+    Backend -->|integrates with| Collaboration_Version_Control
+    Backend -->|deployed & monitored by| Deployment_Monitoring
+    External_Services -->|enhance| Frontend & Backend
+```
 
 ## Development Roadmap
 
