@@ -8,54 +8,36 @@ The FullStack-Task-Manager project aims to evolve into an industry-ready web app
 
 Below is the architecture diagram of the FullStack-Task-Manager, detailing the interactions between its components:
 
-```mermaid
-graph TD
-    subgraph Frontend
-    React[React Application]
-    WebSocket[Real-Time Communication (WebSocket)]
-    Tailwind[Tailwind CSS for styling]
-    React --> WebSocket
-    React --> Tailwind
-    end
+![Architecture Diagram](path/to/your/diagram.png)
 
-    subgraph Backend
-    NodeJS[Node.js Server]
-    RESTful[RESTful API]
-    Auth[Authentication & Authorization System]
-    NodeJS --> RESTful
-    NodeJS --> Auth
-    end
+(Note: Replace `path/to/your/diagram.png` with the actual path to your diagram image.)
 
-    subgraph Database
-    Prisma[Managed by Prisma ORM]
-    DB[Relational Database (PostgreSQL/MySQL)]
-    Prisma --> DB
-    end
+## Development Roadmap
 
-    subgraph Collaboration_Version_Control
-    Git[Integration with Git]
-    FileSharing[File Sharing (Google Drive, Dropbox)]
-    end
+### Phase 1: Foundation Strengthening
 
-    subgraph Deployment_Monitoring
-    Docker[Docker for Containerization]
-    Kubernetes[Kubernetes for Orchestration]
-    CICD[CI/CD Pipeline (GitHub Actions, GitLab CI)]
-    Monitoring[Monitoring Tools (Prometheus, Grafana, Sentry)]
-    Docker --> Kubernetes
-    Kubernetes --> CICD
-    CICD --> Monitoring
-    end
+- **Enhanced Task Management**: Integrate deadline management and task assignments.
+- **Technical Stack Evaluation**: Review and optimize the use of React, Node.js, and Prisma ORM.
 
-    subgraph External_Services
-    CloudStorage[Cloud Storage Integration]
-    Notification[Notification Services]
-    end
+### Phase 2: Collaboration Tools Integration
 
-    %% Connections
-    Frontend -->|REST API Calls| Backend
-    Backend -->|Data Management| Database
-    Backend -->|Code & File Management| Collaboration_Version_Control
-    Collaboration_Version_Control -->|Integration| Frontend
-    Backend -->|Deployment| Deployment_Monitoring
-    Backend -->|Utilizes| External_Services
+- **Real-time Communication**: Implement chat functionality for immediate team interaction.
+- **File Sharing Capability**: Enable document sharing relevant to tasks and projects.
+
+### Phase 3: Deployment and Monitoring
+
+- **Deployment Strategy**: Utilize Docker and Kubernetes for efficient deployment.
+- **Performance Monitoring**: Integrate Prometheus, Grafana, and Sentry for comprehensive monitoring.
+
+### Phase 4: Beta Testing and Feedback
+
+- Conduct user testing to gather feedback and make necessary adjustments.
+
+### Phase 5: Final Adjustments and Launch
+
+- **Optimization and Polishing**: Refine features and performance based on feedback.
+- **Launch Preparation**: Finalize marketing and support plans for the launch.
+
+## Conclusion
+
+Our commitment to developing the FullStack-Task-Manager into a leading tool for development teams is unwavering. This roadmap and architecture plan lay the groundwork for a scalable, efficient, and collaborative application that meets the complex needs of full-stack projects.
