@@ -1,68 +1,52 @@
 ```mermaid
-graph LR
-    %% Styles
-    classDef default fill:#f0f0f0,stroke:#333,stroke-width:2px;
-    classDef frontend fill:#ffccff,stroke:#333,stroke-width:4px;
-    classDef backend fill:#ccccff,stroke:#333,stroke-width:4px;
-    classDef database fill:#ffffcc,stroke:#333,stroke-width:4px;
-    classDef collab fill:#ccffcc,stroke:#333,stroke-width:4px;
-    classDef deployment fill:#ffcccc,stroke:#333,stroke-width:4px;
-    classDef external fill:#cccccc,stroke:#333,stroke-width:4px;
-
-    %% Nodes
-    subgraph FE ["<b>Frontend</b>"]
-        React[("/ React Application \\")]:::frontend
-        WebSocket[("> Real-Time Communication <br> (WebSocket)")]:::frontend
-        Tailwind[("\\ Tailwind CSS /")]:::frontend
-    end
-
-    subgraph BE ["<b>Backend</b>"]
-        NodeJS[("/ Node.js Server \\")]:::backend
-        RESTful[("> RESTful API")]:::backend
-        Auth[("\\ Authentication & Authorization /")]:::backend
-    end
-
-    subgraph DB ["<b>Database</b>"]
-        Prisma[("> Prisma ORM")]:::database
-        Database[("\\ Relational Database <br> (PostgreSQL/MySQL) /")]:::database
-    end
-
-    subgraph CV ["<b>Collab & Version Control</b>"]
-        Git[("/ Git Integration \\")]:::collab
-        FileSharing[("> File Sharing <br> (Google Drive, Dropbox)")]:::collab
-    end
-
-    subgraph DM ["<b>Deployment & Monitoring</b>"]
-        Docker[("\\ Docker Containerization /")]:::deployment
-        Kubernetes[("> Kubernetes Orchestration")]:::deployment
-        CICD[("/ CI/CD Pipeline \\")]:::deployment
-        Monitoring[("> Monitoring <br> (Prometheus, Grafana, Sentry)")]:::deployment
-    end
-
-    subgraph ES ["<b>External Services</b>"]
-        CloudStorage[("\\ Cloud Storage Integration /")]:::external
-        Notification[("> Notification Services")]:::external
-    end
+graph TD
+    %% Components
+    React("React Application")
+    WebSocket("WebSocket for Real-Time Communication")
+    Tailwind("Tailwind CSS")
+    NodeJS("Node.js Server")
+    RESTful("RESTful API")
+    Auth("Authentication & Authorization")
+    DB("Database")
+    Prisma("Prisma ORM")
+    RDB("Relational Database (e.g., PostgreSQL, MySQL)")
+    Git("Git Integration")
+    FS("File Sharing (e.g., Google Drive, Dropbox)")
+    Docker("Docker Containerization")
+    Kubernetes("Kubernetes Orchestration")
+    CICD("CI/CD Pipeline")
+    Monitoring("Monitoring Tools (Prometheus, Grafana, Sentry)")
+    CloudStorage("Cloud Storage Integration")
+    Notifications("Notification Services")
 
     %% Connections
     React -->|interacts with| WebSocket
     React -->|styled by| Tailwind
-    NodeJS -->|provides| RESTful
+    NodeJS -->|exposes| RESTful
     NodeJS -->|secures via| Auth
-    Prisma -->|manages| Database
-    Git -->|tracks changes via| FileSharing
+    RESTful -->|calls| DB
+    DB --> Prisma
+    DB --> RDB
+    Git -->|version control for| NodeJS
+    FS -->|supports| React
     Docker -->|orchestrated by| Kubernetes
-    Kubernetes -->|deploys via| CICD
+    Kubernetes -->|CI/CD pipeline| CICD
     CICD -->|monitored by| Monitoring
-    CloudStorage -->|enables| FileSharing
-    Notification -->|alerts| Auth
-    FE -->|calls| BE
-    BE -->|queries| DB
-    BE -->|integrates with| CV
-    BE -->|monitored & deployed by| DM
-    ES -->|support| FE
-    ES -->|integrate with| BE
+    CloudStorage -->|utilized by| React
+    Notifications -->|notifies| NodeJS
 
-    %% Applying Styles
-    class FE,BE,DB,CV,DM,ES default;
+    %% Styling
+    classDef frontend fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef backend fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef database fill:#fbf,stroke:#333,stroke-width:2px;
+    classDef collab fill:#bfb,stroke:#333,stroke-width:2px;
+    classDef deployment fill:#fdf,stroke:#333,stroke-width:2px;
+    classDef external fill:#ff9,stroke:#333,stroke-width:2px;
+
+    class React,WebSocket,Tailwind frontend;
+    class NodeJS,RESTful,Auth backend;
+    class DB,Prisma,RDB database;
+    class Git,FS collab;
+    class Docker,Kubernetes,CICD,Monitoring deployment;
+    class CloudStorage,Notifications external;
 ```
